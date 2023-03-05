@@ -46,17 +46,11 @@ export default defineComponent({
   methods: {
     connectWebSocket() {
   if (typeof window !== 'undefined' && window.WebSocket) {
-    this.ws = new window.WebSocket('ws://localhost:5173');
   } else if (typeof WebSocket !== 'undefined') {
     this.ws = new WebSocket('ws://localhost:5173');
   } else {
     throw new Error('WebSocket is not supported');
   }
-
-  this.ws.onmessage = (event) => {
-    const message = JSON.parse(event.data);
-    this.messages.push(message);
-  };
 },
 
 
